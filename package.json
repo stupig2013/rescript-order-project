@@ -1,5 +1,5 @@
 {
-  "name": "rescript-project-template",
+  "name": "order",
   "version": "0.0.1",
   "scripts": {
     "res:build": "rescript",
@@ -12,6 +12,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "rescript": "*"
+    "rescript": "*",
+    "webpack": "^5.75.0"
   }
 }
