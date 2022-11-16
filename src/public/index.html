@@ -29,10 +29,13 @@
         color: #fff;
       }
       section {
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
+      }
+      section.active {
+        display: flex;
       }
       section select, section input {
         margin-bottom: 10px;
@@ -57,9 +60,12 @@
         <li>preview</li>
       </ul>
 
-      <section id="step1">
-        <label>select a meal</label>
-        <select id="select_meal"></select>
+      <section id="step1" class="active">
+        <label>Please Select a meal</label>
+        <select id="select_meal">
+        </select>
+        <label>Please Enter Number of people</label>
+        <input type="number" id="people_number" />
         <button class="next">next</button>
       </section>
     </div>

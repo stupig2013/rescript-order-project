@@ -1,40 +1,32 @@
-let getData = () => {
-  let a = 1
-  a
-};
 
-type dish = {
-  id: int,
-  name: string,
-  restaurant: string,
-  availableMeals: array<string>
+
+
+let step = ref(1)
+
+type stateType = {
+  mutable meal: string,
+  mutable people: int,
+  mutable restaurant: string
 }
 
-let data: array<dish> = [
-  {
-    id: 1,
-    name: "Chicken Burger",
-    restaurant: "Mc Donalds",
-    availableMeals: ["lunch", "dinner"]
-  },
-]
+let state: stateType = {
+  meal: "",
+  people: 1,
+  restaurant: ""
+}
 
-type result<'a, 'b> =
-  | Ok('a)
-  | Error('b)
+let renderStep = (step: int) => {
+  if step == 1 {
+    let meals = Data.getMeals()
+    Js.log(meals)
+    Dom2.fillOptions("select_meal", meals)
+    Dom2.fillInput("people_number", Belt.Int.toString(state.people))
+  }
+}
 
-type myPayload = {data: string}
+let main = () => {
+  renderStep(step.contents)
+}
 
-type myPayloadResults<'errorType> = array<result<myPayload, 'errorType>>
 
-let payloadResults: myPayloadResults<string> = [
-  Ok({data: "hi"}),
-  Ok({data: "bye"}),
-  Error("Something wrong happened!")
-]
-
-// @module external data2: array<dish> = "./data.json"
-// Js.log(data2);
-
-let ok = Ok({data: "hi"});
-Js.log(ok);
+main()
