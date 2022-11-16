@@ -53,3 +53,17 @@ let getRestaurants = (~meal) => {
 
   restaurants
 }
+
+let getDishes = (~meal, ~restaurant) => {
+  let filteredDishes: array<dishType> = []
+
+   for i in 0 to Belt.Array.length(dishes) - 1 {
+    let dish = dishes[i]
+
+    if Js.Array2.includes(dish.availableMeals, meal) && dish.restaurant == restaurant && !Js.Array2.includes(filteredDishes, dish) {
+      let _ = Js.Array2.push(filteredDishes, dish)
+    }
+   }
+
+   filteredDishes
+}

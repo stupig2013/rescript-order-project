@@ -5,6 +5,17 @@ var Js_array = require("rescript/lib/js/js_array.js");
 var Belt_Option = require("rescript/lib/js/belt_Option.js");
 var Caml_option = require("rescript/lib/js/caml_option.js");
 
+function createElementByInnerHTML(tagName, innerHtml) {
+  var element = document.createElement(tagName);
+  element.innerHTML = innerHtml;
+  return element;
+}
+
+function appendChild(id, child) {
+  var wrapper = Belt_Option.getExn(Caml_option.nullable_to_opt(document.getElementById(id)));
+  wrapper.appendChild(child);
+}
+
 function fillOptions(id, list) {
   var wrapper = Belt_Option.getExn(Caml_option.nullable_to_opt(document.getElementById(id)));
   var strList = list.map(function (name) {
@@ -16,6 +27,11 @@ function fillOptions(id, list) {
 function fillInput(id, value) {
   var element = Belt_Option.getExn(Caml_option.nullable_to_opt(document.getElementById(id)));
   element.setAttribute("value", value);
+}
+
+function setInnerHTML(id, html) {
+  var element = Belt_Option.getExn(Caml_option.nullable_to_opt(document.getElementById(id)));
+  element.innerHTML = html;
 }
 
 function addEventListener(id, $$event, listener) {
@@ -37,10 +53,18 @@ function setValue(id, value) {
   element.value = value;
 }
 
+function getChildrenByTagName(id, tagName) {
+  return Belt_Option.getExn(Caml_option.nullable_to_opt(document.getElementById(id))).children;
+}
+
+exports.createElementByInnerHTML = createElementByInnerHTML;
+exports.appendChild = appendChild;
 exports.fillOptions = fillOptions;
 exports.fillInput = fillInput;
+exports.setInnerHTML = setInnerHTML;
 exports.addEventListener = addEventListener;
 exports.setClassName = setClassName;
 exports.getValue = getValue;
 exports.setValue = setValue;
+exports.getChildrenByTagName = getChildrenByTagName;
 /* No side effect */
