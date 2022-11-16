@@ -1,11 +1,6 @@
-// type document // abstract type for a document object
-
-// type htmlElement = {
-//   innerHTML: string
-// }
-
-// @val external doc: document = "document"
-// @send external getElementById: (document, string) => htmlElement = "getElementById"
+type documentType // abstract type for a document object
+@val external doc: documentType = "document"
+@send external getHtmlFormElementById: (documentType, string) => Dom.htmlInputElement = "getElementById"
 
 open Webapi.Dom
 open Belt.Option
@@ -14,6 +9,8 @@ let fillOptions = (id: string, list: array<string>) => {
   let wrapper = document -> Document.getElementById(id) -> getExn
   // Js.log(wrapper)
 
+  // let _list = Js.Array2.slice(list)
+  // let _ = Js.Array2.unshift(list, "")
   let strList = Js.Array2.map(list, name => {
     `<option value="${name}">${name}</option>`
   })
@@ -32,5 +29,25 @@ let fillOptions = (id: string, list: array<string>) => {
 let fillInput = (id: string, value: string) => {
   let element = document -> Document.getElementById(id) -> getExn
   Element.setAttribute(element, "value", value)
+}
+
+let addEventListener = (id: string, event: string, listener: Dom.event => unit) => {
+  let element = document -> Document.getElementById(id) -> getExn
+  Element.addEventListener(element, event, listener)
+}
+
+let setClassName = (id: string, className: string) => {
+  let element = document -> Document.getElementById(id) -> getExn
+  Element.setAttribute(element, "class", className)
+}
+
+let getValue = (id: string) => {
+  let element = doc -> getHtmlFormElementById(id)
+  HtmlInputElement.value(element)
+}
+
+let setValue = (id: string, value: string) => {
+  let element = doc -> getHtmlFormElementById(id)
+  HtmlInputElement.setValue(element, value)
 }
 

@@ -41,23 +41,15 @@ let getMeals = () => {
 }
 
 let getRestaurants = (~meal) => {
-  
+  let restaurants: array<string> = []
 
-  // let meals: array<mealType> = []
+  for i in 0 to Belt.Array.length(dishes) - 1 {
+    let dish = dishes[i]
 
-  // for i in 0 to Belt.Array.length(dishes) {
-  //   let dish = dishes[i]
-    
-  //   for j in 0 to Belt.Array.length(dish.availableMeals) {
-  //     let meal = dish.availableMeals[j]
+    if Js.Array2.includes(dish.availableMeals, meal) && !Js.Array2.includes(restaurants, dish.restaurant) {
+      let _ = Js.Array2.push(restaurants, dish.restaurant)
+    }
+  }
 
-  //   }
-  // }
-
-  // switch meal {
-  //   | None => dishes
-  //   | Some(r_) => dishes
-  // } 
-
-  dishes
+  restaurants
 }

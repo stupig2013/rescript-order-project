@@ -24,7 +24,15 @@ function getMeals(param) {
 }
 
 function getRestaurants(meal) {
-  return dishes;
+  var restaurants = [];
+  for(var i = 0 ,i_finish = dishes.length; i < i_finish; ++i){
+    var dish = Caml_array.get(dishes, i);
+    if (dish.availableMeals.includes(meal) && !restaurants.includes(dish.restaurant)) {
+      restaurants.push(dish.restaurant);
+    }
+    
+  }
+  return restaurants;
 }
 
 exports.dishData = dishData;

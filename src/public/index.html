@@ -24,50 +24,102 @@
       .steps li:first-child {
         border-left-width: 1px;
       }
-      .steps li.active {
-        background-color: #666;
-        color: #fff;
-      }
       section {
         display: none;
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
       }
-      section.active {
-        display: flex;
-      }
       section select, section input {
         margin-bottom: 10px;
       }
-      section button {
+      footer {
+        display: flex;
+        justify-content: space-between;
         margin-top: 100px;
+        width: 100%;
       }
-      .next {
-        align-self: flex-end;
+      .step1 #tab_step1, .step2 #tab_step2, .step3 #tab_step3, .step4 #tab_step4 {
+        background-color: #666;
+        color: #fff;
       }
-      .previous {
-        align-self: flex-start;
+      .step1 #step1 {
+        display: flex;
+      }
+      .step1 footer {
+        justify-content: flex-end;
+      }
+      .step1 #btn_previous {
+        display: none;
+      }
+      .step2 #step2 {
+        display: flex;
+      }
+      .step3 #step3 {
+        display: flex;
+      }
+      .step4 #step4 {
+        display: flex;
+      }
+      .step4 #btn_next {
+        display: none;
+      }
+      .step4 #btn_submit {
+        display: block;
+      }
+      #btn_submit {
+        display: none;
       }
     </style>
   </head>
   <body>
-    <div class="content">
+    <div id="content" class="content step1">
       <ul class="steps">
-        <li class="active">step1</li>
-        <li>step2</li>
-        <li>step3</li>
-        <li>preview</li>
+        <li id="tab_step1">step1</li>
+        <li id="tab_step2">step2</li>
+        <li id="tab_step3">step3</li>
+        <li id="tab_step4">preview</li>
       </ul>
 
-      <section id="step1" class="active">
+      <section id="step1">
         <label>Please Select a meal</label>
-        <select id="select_meal">
-        </select>
+        <select id="select_meal"></select>
         <label>Please Enter Number of people</label>
         <input type="number" id="people_number" />
-        <button class="next">next</button>
+        
       </section>
+
+      <section id="step2">
+        <label>Please Select a Restaurant</label>
+        <select id="select_restaurant"></select>
+      </section>
+
+      <section id="step3">
+        <ul>
+          <li>
+            <label>Please Select a Dish</label>
+            <select id="select_dish"></select>
+            <label>Please enter no. of servings</label>
+            <input type="number" id="people_number" />
+          </li>
+        </ul>
+        
+        <button id="add_dish">+</button>
+      </section>
+
+      <section id="step4">
+        <ul>
+          <li>
+            <label>Meal</label>
+          </li>
+        </ul>
+      </section>
+
+      <footer>
+        <button id="btn_previous">previous</button>
+        <button id="btn_next">next</button>
+        <button id="btn_submit">submit</button>
+      </footer>
     </div>
 
   </body>

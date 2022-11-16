@@ -18,6 +18,29 @@ function fillInput(id, value) {
   element.setAttribute("value", value);
 }
 
+function addEventListener(id, $$event, listener) {
+  var element = Belt_Option.getExn(Caml_option.nullable_to_opt(document.getElementById(id)));
+  element.addEventListener($$event, listener);
+}
+
+function setClassName(id, className) {
+  var element = Belt_Option.getExn(Caml_option.nullable_to_opt(document.getElementById(id)));
+  element.setAttribute("class", className);
+}
+
+function getValue(id) {
+  return document.getElementById(id).value;
+}
+
+function setValue(id, value) {
+  var element = document.getElementById(id);
+  element.value = value;
+}
+
 exports.fillOptions = fillOptions;
 exports.fillInput = fillInput;
+exports.addEventListener = addEventListener;
+exports.setClassName = setClassName;
+exports.getValue = getValue;
+exports.setValue = setValue;
 /* No side effect */
